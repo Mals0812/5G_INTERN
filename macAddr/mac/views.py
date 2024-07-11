@@ -90,11 +90,16 @@ def ping(request):
         # Handle the case where multiple HubStatus objects are returned
         error_message = 'Multiple HubStatus objects found'
         status_code = 400
-    except (TypeError, ValueError) as e:
-        # Handle type errors and value errors
-        error_message = f'{type(e).__name__}: {str(e)}'
+    except TypeError as te:
+        # Handle type errors
+        error_message = f'TypeError: {str(te)}'
         status_code = 400
-    except Exception as e:
+    except ValueError as ve:
+        # Handle value errors
+        error_message = f'ValueError: {str(ve)}'
+        status_code = 400
+
+    except Exception as e: # pylint: disable=broad-exception-caught
         # Handle unexpected errors with a generic message
         error_message = f'An unexpected error occurred: {str(e)}'
         status_code = 500
