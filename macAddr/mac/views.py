@@ -105,3 +105,4 @@ def ping(request):
         status_code = 500
     return create_response(error_message=error_message, status_code=status_code)
 #Added this comment for test
+#Welcome to macAddr project
